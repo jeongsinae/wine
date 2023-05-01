@@ -5,8 +5,11 @@ from PIL import Image
 import requests
 import random
 import math
+import toy_markets
 
-wine_info = pd.read_csv('./.streamlit/vivino_dataset.csv')
+toy_data_info = toy_markets.toy_df
+
+#toy_data_info = pd.read_csv('./.streamlit/vivino_dataset.csv')
 
 st.set_page_config(
     page_title="Hello",
@@ -27,7 +30,7 @@ with tcol2:
     st.title("Welcome, we are WinePickers ✨")
 
 
-st.subheader("000, your current location is 0000")  #### user id, user 주소
+st.subheader("꿀벌정시내, your current location is 쌍암동")  #### user id, user 주소
 # st.subheader("{}, your current location is {}".format(name, location))  #### user id, user 주소
 
 st.write(" ")
@@ -35,15 +38,15 @@ st.write(" ")
 st.subheader("Top 5 wines of this week")
 
 def get_random_image_url_info():
-    select = random.randrange(0, 500)
-    image_url = wine_info['imgurl'][select]
-    image_info = wine_info['name'][select]
+    select = random.randrange(0, 50)
+    image_url = toy_data_info['imgurl'][select]
+    image_info = toy_data_info['name'][select]
     return image_url, image_info
 
 def popualr_image_url_info():
-    select = random.randrange(500, 700)
-    image_url = wine_info['imgurl'][select]
-    image_info = wine_info['name'][select]
+    select = random.randrange(10, 63)
+    image_url = toy_data_info['imgurl'][select]
+    image_info = toy_data_info['name'][select]
     return image_url, image_info
 
 # 예시 이미지
@@ -119,38 +122,49 @@ st.markdown(" ")
 
 # TODO : get embedding info 
 
-st.subheader("000's wine purchase list") 
+st.subheader("꿀벌정시내's wine purchase list") 
 # 예시 이미지
-image_1 = "https://via.placeholder.com/300"
-image_2 = "https://via.placeholder.com/300"
+
+image_1 = toy_data_info['imgurl'][11]
+image_2 = toy_data_info['imgurl'][12]
+image_3 = toy_data_info['imgurl'][16]
+image_4 = toy_data_info['imgurl'][36]
+image_5 = toy_data_info['imgurl'][55]
+
 
 # 예시 이미지별 정보
-info_1 = "이미지 1 정보"
-info_2 = "이미지 2 정보"
+info_1 = toy_data_info['name'][11]
+info_2 = toy_data_info['name'][12]
+info_3 = toy_data_info['name'][16]
+info_4 = toy_data_info['name'][36]
+info_5 = toy_data_info['name'][55]
+
+
 
 # row 분할
 col1, col2, col3, col4, col5 = st.columns(5)
 
 # 각 column에 이미지와 정보 배치
 with col1:
-    st.image(image_1)  # 와인 사진
+    st.image(image_1,width=50)  # 와인 사진
     st.write(info_1)  # 이름
 
 with col2:
-    st.image(image_2)
-    st.write(info_2)
+    st.image(image_2,width=50)
+    st.write(info_3)
 
 with col3:
-    st.image(image_2)
+    st.image(image_4,width=50)
     st.write(info_2)
 
 with col4:
-    st.image(image_2)
-    st.write(info_2)
+    st.image(image_4,width=50)
+    st.write(info_4)
 
 with col5:
-    st.image(image_2)
-    st.write(info_2)
+    st.image(image_5,width=50)
+    st.write(info_5)
+
 st.markdown(" ")
 st.markdown(" ")
 
@@ -158,34 +172,41 @@ st.markdown(" ")
 
 st.subheader("You might love these wines too!")
 # 예시 이미지
-image_1 = "https://via.placeholder.com/300"
-image_2 = "https://via.placeholder.com/300"
+image_1 = toy_data_info['imgurl'][33]
+image_2 = toy_data_info['imgurl'][1]
+image_3 = toy_data_info['imgurl'][9]
+image_4 = toy_data_info['imgurl'][62]
+image_5 = toy_data_info['imgurl'][54]
+
 
 # 예시 이미지별 정보
-info_1 = "이미지 1 정보"
-info_2 = "이미지 2 정보"
+info_1 = toy_data_info['name'][33]
+info_2 = toy_data_info['name'][1]
+info_3 = toy_data_info['name'][9]
+info_4 = toy_data_info['name'][62]
+info_5 = toy_data_info['name'][54]
+
 
 # row 분할
 col1, col2, col3, col4, col5 = st.columns(5)
 
 # 각 column에 이미지와 정보 배치
 with col1:
-    st.image(image_1)  # 와인 사진
+    st.image(image_1,width=50)  # 와인 사진
     st.write(info_1)  # 이름
 
 with col2:
-    st.image(image_2)
-    st.write(info_2)
+    st.image(image_2,width=50)
+    st.write(info_3)
 
 with col3:
-    st.image(image_2)
+    st.image(image_4,width=50)
     st.write(info_2)
 
 with col4:
-    st.image(image_2)
-    st.write(info_2)
+    st.image(image_4,width=50)
+    st.write(info_4)
 
 with col5:
-    st.image(image_2)
-    st.write(info_2)
-
+    st.image(image_5,width=50)
+    st.write(info_5)
